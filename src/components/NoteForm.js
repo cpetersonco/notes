@@ -9,8 +9,8 @@ import Box from '@material-ui/core/Box'
 const NoteForm = (props) => {
     const [content, setContentText] = useState('')
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
+    const handleSubmit = (e) => {
+        e.preventDefault()
         props.onAdd(content)
     };
 
