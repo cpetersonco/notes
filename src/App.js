@@ -6,7 +6,6 @@ import Form from './components/NoteForm'
 
 const App = (props) => {
     const [savedNotes, setSavedNotes] = useState([])
-
     const addNote = (note) => {
         setSavedNotes([note, ...savedNotes])
     }
