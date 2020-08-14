@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 
-const Note = (props) => {
+const Note = ({ content }) => {
     return (
         <Grid item xs={12}>
             <Paper>
@@ -18,9 +18,9 @@ const Note = (props) => {
                             fullWidth
                             variant='outlined'
                             InputLabelProps={{
-                                shrink: true,
+                                shrink: true
                             }}
-                            value={this.props.content}
+                            value={content}
                             disabled={true}
                         />
                     </Grid>
