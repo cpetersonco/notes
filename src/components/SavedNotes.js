@@ -8,7 +8,7 @@ const SavedNotes = (props) => {
         <Container maxWidth='sm'>
             <h1>Saved Notes</h1>
             <Grid container spacing={2}>
-                {this.props.savedNotes.map((note, index) => {
+                {props.savedNotes.map((note, index) => {
                     return <Note key={index} content={note} />
                 })}
             </Grid>
