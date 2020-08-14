@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
@@ -12,7 +12,7 @@ const NoteForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         props.onAdd(content)
-    };
+    }
 
     return (
         <Container maxWidth='sm'>
@@ -30,11 +30,11 @@ const NoteForm = (props) => {
                             rows={6}
                             variant='outlined'
                             InputLabelProps={{
-                                shrink: true,
+                                shrink: true
                             }}
                             value={content}
                             onChange={(e) => {
-                                setContentText(e.target.value);
+                                setContentText(e.target.value)
                             }}
                         />
                     </Grid>
