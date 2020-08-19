@@ -37,7 +37,6 @@ const Login = ({ history }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(`Email: ${email} and Password: ${password}`)
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code
