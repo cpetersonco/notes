@@ -32,20 +32,25 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = ({ history }) => {
     const classes = useStyles()
 
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState()
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(`Email: ${email} and Password: ${password}`)
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code
-            var errorMessage = error.message
-            // ...
-            console.log(`Error Code: ${errorCode} \nError Message: ${errorMessage}`)
-        })
-        history.push('/')
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(function (user) {
+                // Success
+                history.push('/')
+            })
+            .catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code
+                setErrorMessage(error.message)
+                // ...
+                console.log(`Error Code: ${errorCode} \nError Message: ${errorMessage}`)
+            })
     }
 
     return (
@@ -58,6 +63,7 @@ const SignUp = ({ history }) => {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
+                {errorMessage && <h3 className="error"> { errorMessage } </h3> }
                 <form className={classes.form} noValidate onSubmit={handleSubmit}>
                     <TextField
                         variant="outlined"
