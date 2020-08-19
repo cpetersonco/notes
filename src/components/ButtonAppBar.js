@@ -36,6 +36,9 @@ const ButtonAppBar = ({ history }) => {
                     <Typography variant='h6' className={classes.title}>
                         Notes
                     </Typography>
+                    <Button color='inherit' onClick={() => history.push('/signup')}>
+                        Sign Up
+                    </Button>
                     <Button color='inherit' onClick={() => history.push('/login')}>
                         Login
                     </Button>
