@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import firebase from '../firebase'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,6 +23,16 @@ const useStyles = makeStyles((theme) => ({
 const ButtonAppBar = ({ history }) => {
     const classes = useStyles()
 
+    const logout = () => {
+        firebase.auth().signOut().then(function () {
+            // Sign-out successful.
+            history.push('/')
+        }).catch(function (error) {
+            // An error happened.
+            console.log(error)
+        })
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position='static'>
@@ -36,12 +47,20 @@ const ButtonAppBar = ({ history }) => {
                     <Typography variant='h6' className={classes.title}>
                         Notes
                     </Typography>
-                    <Button color='inherit' onClick={() => history.push('/signup')}>
-                        Sign Up
-                    </Button>
-                    <Button color='inherit' onClick={() => history.push('/login')}>
-                        Login
-                    </Button>
+                    {
+                        firebase.auth().currentUser
+                            ? <Button color='inherit' onClick={logout}>
+                                Logout
+                            </Button>
+                            : <div>
+                                <Button color='inherit' onClick={() => history.push('/signup')}>Sign Up
+                                </Button>
+                                <Button color='inherit' onClick={() => history.push('/login')}>
+                                    Login
+                                </Button>
+                            </div>
+                    }
+
                 </Toolbar>
             </AppBar>
         </div>
