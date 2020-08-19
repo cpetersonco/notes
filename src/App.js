@@ -1,21 +1,17 @@
-import React, { useState } from 'react'
-import ButtonAppBar from './components/ButtonAppBar'
-import Box from '@material-ui/core/Box'
-import SavedNotes from './components/SavedNotes'
-import Form from './components/NoteForm'
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Home from './Home'
+import Login from './Login'
 
-const App = (props) => {
-    const [savedNotes, setSavedNotes] = useState([])
-    const addNote = (note) => {
-        setSavedNotes([note, ...savedNotes])
-    }
-
+const App = () => {
     return (
-        <Box>
-            <ButtonAppBar />
-            <Form onAdd={addNote} />
-            <SavedNotes savedNotes={savedNotes} />
-        </Box>
+        <BrowserRouter>
+            <Switch>
+                <Route path='/' exact component={Home} />
+                <Route path='/login' exact component={Login} />
+                <Route path='/' render={() => <div>404</div>} />
+            </Switch>
+        </BrowserRouter>
     )
 }
 
