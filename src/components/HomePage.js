@@ -11,7 +11,7 @@ const Home = (props) => {
 
     useEffect(() => {
         if (firebase.auth().currentUser) {
-            db.collection('notes').where('uid', '==', firebase.auth().currentUser.uid)
+            db.collection('notes').where('uid', '==', firebase.auth().currentUser.uid).orderBy('timestamp', 'desc')
                 .get()
                 .then(function (querySnapshot) {
                     let initNotes = []
