@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
-import firebase, { db } from '../firebase'
+import firebase, { db } from '../api/firebase'
 
 const NoteForm = (props) => {
     const [content, setContentText] = useState('')
