@@ -13,15 +13,19 @@ const Note = ({ content }) => {
                         <TextField
                             id='outlined-textarea'
                             label='Note'
-                            style={{ margin: 8 }}
+                            style={{ margin: 8, color: 'primary' }}
                             multiline
                             fullWidth
                             variant='outlined'
                             InputLabelProps={{
                                 shrink: true
                             }}
+                            inputProps={{
+                                readOnly: true,
+                                disabled: true
+                            }}
                             value={content}
-                            disabled={true}
+                            color='primary'
                         />
                     </Grid>
                 </Box>
