@@ -42,7 +42,18 @@ const SignUp = ({ history }) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function (user) {
                 // Success
-                history.push('/')
+                firebase.auth().signInWithEmailAndPassword(email, password)
+                    .then(function (user) {
+                    // Success
+                        history.push('/')
+                    })
+                    .catch(function (error) {
+                    // Handle Errors here.
+                        var errorCode = error.code
+                        setErrorMessage(error.message)
+                        // ...
+                        console.log(`Error Code: ${errorCode} \nError Message: ${errorMessage}`)
+                    })
             })
             .catch(function (error) {
                 // Handle Errors here.
