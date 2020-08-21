@@ -28,6 +28,7 @@ const NoteForm = (props) => {
                         console.error('Error adding document: ', error)
                     })
                 props.onAdd(content)
+                setContentText('')
             } else {
                 // No user is signed in.
                 console.log('Please sign in!')
