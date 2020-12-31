@@ -5,35 +5,23 @@ import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
-import firebase, { db } from '../api/firebase'
+import { createNoteItem } from '../api/firebase'
 
 const NoteForm = (props) => {
     const [content, setContentText] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                // User is signed in.
-                console.log(firebase.firestore.FieldValue.serverTimestamp())
-                db.collection('notes').add({
-                    uid: user.uid,
-                    content: content,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                })
-                    .then(function (docRef) {
-                        console.log('Document written with ID: ', docRef.id)
-                    })
-                    .catch(function (error) {
-                        console.error('Error adding document: ', error)
-                    })
-                props.onAdd(content)
-                setContentText('')
-            } else {
-                // No user is signed in.
-                console.log('Please sign in!')
-            }
-        })
+
+        createNoteItem(content)
+            .then(function (docRef) {
+                console.log('Document written with ID: ', docRef.id)
+            })
+            .catch(function (error) {
+                console.error('Error adding document: ', error)
+            })
+
+        setContentText('')
     }
 
     return (

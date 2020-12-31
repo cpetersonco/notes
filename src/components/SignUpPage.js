@@ -7,7 +7,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import firebase from '../api/firebase'
+import { signUpWithEmailAndPassword, authenticateWithEmailAndPassword } from '../api/firebase'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -34,33 +34,23 @@ const SignUp = ({ history }) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState()
+    const [errorMessage, setErrorMessage] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(`Email: ${email} and Password: ${password}`)
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        signUpWithEmailAndPassword(email, password)
             .then(function (user) {
                 // Success
-                firebase.auth().signInWithEmailAndPassword(email, password)
+                authenticateWithEmailAndPassword(email, password)
                     .then(function (user) {
-                    // Success
                         history.push('/')
                     })
                     .catch(function (error) {
-                    // Handle Errors here.
-                        var errorCode = error.code
                         setErrorMessage(error.message)
-                        // ...
-                        console.log(`Error Code: ${errorCode} \nError Message: ${errorMessage}`)
                     })
             })
             .catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code
                 setErrorMessage(error.message)
-                // ...
-                console.log(`Error Code: ${errorCode} \nError Message: ${errorMessage}`)
             })
     }
 

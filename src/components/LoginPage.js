@@ -7,7 +7,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { auth } from '../api/firebase'
+import { authenticateWithEmailAndPassword } from '../api/firebase'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -34,21 +34,16 @@ const Login = ({ history }) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState(null)
+    const [errorMessage, setErrorMessage] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        auth.signInWithEmailAndPassword(email, password)
+        authenticateWithEmailAndPassword(email, password)
             .then(function (user) {
-                // Success
                 history.push('/')
             })
             .catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code
                 setErrorMessage(error.message)
-                // ...
-                console.log(`Error Code: ${errorCode} \nError Message: ${errorMessage}`)
             })
     }
 

@@ -13,4 +13,38 @@ firebase.initializeApp(firebaseConfig)
 export const auth = firebase.auth()
 export const db = firebase.firestore()
 
+export const authenticateWithEmailAndPassword = (email, password) => {
+    return auth.signInWithEmailAndPassword(email, password)
+}
+
+export const signUpWithEmailAndPassword = (email, password) => {
+    return auth.createUserWithEmailAndPassword(email, password)
+}
+
+export const signOutUser = () => {
+    return auth.signOut()
+}
+
+export const createNoteItem = (content) => {
+    return db.collection('notes').add({
+        uid: auth.currentUser.uid,
+        content,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+}
+
+export const getNoteItems = () => {
+    return db.collection('notes')
+        .where('uid', '==', auth.currentUser.uid)
+        .orderBy('timestamp', 'desc')
+        .get()
+}
+
+export const streamNoteItems = (observer) => {
+    return db.collection('notes')
+        .where('uid', '==', auth.currentUser.uid)
+        .orderBy('timestamp', 'desc')
+        .onSnapshot(observer)
+}
+
 export default firebase
