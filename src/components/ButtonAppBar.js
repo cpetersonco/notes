@@ -4,7 +4,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import firebase from '../api/firebase'
+import SignOutButton from './SignOutButton'
+import { auth } from '../api/firebase'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,16 +22,6 @@ const useStyles = makeStyles((theme) => ({
 const ButtonAppBar = ({ history }) => {
     const classes = useStyles()
 
-    const logout = () => {
-        firebase.auth().signOut().then(function () {
-            // Sign-out successful.
-            history.push('/')
-        }).catch(function (error) {
-            // An error happened.
-            console.log(error)
-        })
-    }
-
     return (
         <div className={classes.root}>
             <AppBar position='static'>
@@ -39,10 +30,8 @@ const ButtonAppBar = ({ history }) => {
                         Notes
                     </Typography>
                     {
-                        firebase.auth().currentUser
-                            ? <Button color='inherit' onClick={logout}>
-                                Logout
-                            </Button>
+                        auth.currentUser
+                            ? <SignOutButton history={history}/>
                             : <div>
                                 <Button color='inherit' onClick={() => history.push('/signup')}>
                                     Sign Up
@@ -52,7 +41,6 @@ const ButtonAppBar = ({ history }) => {
                                 </Button>
                             </div>
                     }
-
                 </Toolbar>
             </AppBar>
         </div>
