@@ -2,7 +2,6 @@ import React from 'react'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
 import NoteIcon from '@material-ui/icons/Note'
 import Box from '@material-ui/core/Box'
 
@@ -29,20 +28,6 @@ const LandingPage = ({ history }) => {
                         Make it short and sweet, but not too short so folks don&apos;t simply skip over it
                         entirely.
                     </Typography>
-                </div>
-                <div>
-                    <Grid container spacing={2} justify="center">
-                        <Grid item>
-                            <Button variant="contained" color="primary" onClick={() => history.push('/signup')}>
-                                Sign up
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button variant="outlined" color="primary" onClick={() => history.push('/login')}>
-                                Login
-                            </Button>
-                        </Grid>
-                    </Grid>
                 </div>
             </Container>
         </div>
