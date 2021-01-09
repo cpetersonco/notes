@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
+
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
-import { createNoteItem } from '../api/firebase'
 
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
+import { createNoteItem } from '../../api/firebase'
 
 const EMPTY_DELTA = { ops: [] }
 
@@ -25,12 +26,11 @@ const NoteForm = (props) => {
         createNoteItem(contentAsString)
             .then(function (docRef) {
                 console.log('Document written with ID: ', docRef.id)
+                setContent(EMPTY_DELTA)
             })
             .catch(function (error) {
                 console.error('Error adding document: ', error)
             })
-
-        setContent(EMPTY_DELTA)
     }
 
     const onEditorChange = (value, delta, source, editor) => {

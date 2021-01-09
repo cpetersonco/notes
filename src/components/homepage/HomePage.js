@@ -1,19 +1,22 @@
 import React from 'react'
-import ButtonAppBar from './ButtonAppBar'
-import Box from '@material-ui/core/Box'
-import { auth } from '../api/firebase'
-import LandingPage from './LandingPage'
-import Application from './Application'
 
-const Home = (props) => {
+import Box from '@material-ui/core/Box'
+
+import LandingPage from './LandingPage'
+import ButtonAppBar from './ButtonAppBar'
+import Application from '../application'
+
+import { auth } from '../../api/firebase'
+
+const Home = ({ history }) => {
     return (
         <Box>
-            <ButtonAppBar history={props.history} />
+            <ButtonAppBar history={history} />
             {auth.currentUser
                 // User signed in
                 ? <Application />
                 // No user is signed in.
-                : <LandingPage history={props.history} />
+                : <LandingPage history={history} />
             }
         </Box>
     )

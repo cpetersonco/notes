@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Home from './components/HomePage'
-import Login from './components/LoginPage'
-import SignUp from './components/SignUpPage'
+import Home from './components/homepage'
+import Login from './components/login'
+import SignUp from './components/signup'
 
 const App = () => {
     return (

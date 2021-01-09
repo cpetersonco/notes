@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Note from './Note'
+
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
-import { streamNoteItems } from '../api/firebase'
+
+import Note from './Note'
+
+import { streamNoteItems } from '../../api/firebase'
 
 const SavedNotes = (props) => {
     const [savedNotes, setSavedNotes] = useState([])
@@ -23,7 +26,11 @@ const SavedNotes = (props) => {
             <h1>Saved Notes</h1>
             <Grid container spacing={2}>
                 {savedNotes.map((note, index) => {
-                    return <Note key={index} content={note.content} />
+                    return (
+                        <Grid item xs={12} key={index}>
+                            <Note content={note.content} />
+                        </Grid>
+                    )
                 })}
             </Grid>
         </Container>

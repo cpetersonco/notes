@@ -1,6 +1,8 @@
 import React from 'react'
+
 import Button from '@material-ui/core/Button'
-import { signOutUser } from '../api/firebase'
+
+import { signOutUser } from '../../api/firebase'
 
 const SignOutButton = ({ history }) => {
     const signOut = () => {
