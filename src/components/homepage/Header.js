@@ -25,27 +25,25 @@ const Header = ({ history }) => {
     const classes = useStyles()
 
     return (
-        <div className={classes.root}>
-            <header>
-                <Toolbar>
-                    <Typography color='textPrimary' variant='h6' className={classes.title}>
+        <header className={classes.root}>
+            <Toolbar>
+                <Typography color='textPrimary' variant='h6' className={classes.title}>
                         Notes
-                    </Typography>
-                    {
-                        auth.currentUser
-                            ? <SignOutButton history={history}/>
-                            : <div>
-                                <Button onClick={() => history.push('/signup')}>
+                </Typography>
+                {
+                    auth.currentUser
+                        ? <SignOutButton history={history}/>
+                        : <div>
+                            <Button onClick={() => history.push('/signup')}>
                                     Sign Up
-                                </Button>
-                                <Button onClick={() => history.push('/login')}>
+                            </Button>
+                            <Button onClick={() => history.push('/login')}>
                                     Login
-                                </Button>
-                            </div>
-                    }
-                </Toolbar>
-            </header>
-        </div>
+                            </Button>
+                        </div>
+                }
+            </Toolbar>
+        </header>
     )
 }
 
