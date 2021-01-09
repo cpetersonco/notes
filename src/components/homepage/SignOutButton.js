@@ -15,7 +15,7 @@ const SignOutButton = ({ history }) => {
     }
 
     return (
-        <Button color='inherit' onClick={signOut}>
+        <Button onClick={signOut}>
             Logout
         </Button>
     )

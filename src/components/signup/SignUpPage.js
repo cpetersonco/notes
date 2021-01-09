@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 
-import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
@@ -60,9 +58,6 @@ const SignUp = ({ history }) => {
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
@@ -98,7 +93,6 @@ const SignUp = ({ history }) => {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        color="primary"
                         className={classes.submit}
                     >
                         Sign Up

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
@@ -22,32 +21,32 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const ButtonAppBar = ({ history }) => {
+const Header = ({ history }) => {
     const classes = useStyles()
 
     return (
         <div className={classes.root}>
-            <AppBar position='static'>
+            <header>
                 <Toolbar>
-                    <Typography variant='h6' className={classes.title}>
+                    <Typography color='textPrimary' variant='h6' className={classes.title}>
                         Notes
                     </Typography>
                     {
                         auth.currentUser
                             ? <SignOutButton history={history}/>
                             : <div>
-                                <Button color='inherit' onClick={() => history.push('/signup')}>
+                                <Button onClick={() => history.push('/signup')}>
                                     Sign Up
                                 </Button>
-                                <Button color='inherit' onClick={() => history.push('/login')}>
+                                <Button onClick={() => history.push('/login')}>
                                     Login
                                 </Button>
                             </div>
                     }
                 </Toolbar>
-            </AppBar>
+            </header>
         </div>
     )
 }
 
-export default ButtonAppBar
+export default Header

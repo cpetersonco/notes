@@ -3,7 +3,7 @@ import React from 'react'
 import Box from '@material-ui/core/Box'
 
 import LandingPage from './LandingPage'
-import ButtonAppBar from './ButtonAppBar'
+import Header from './Header'
 import Application from '../application'
 
 import { auth } from '../../api/firebase'
@@ -11,7 +11,7 @@ import { auth } from '../../api/firebase'
 const Home = ({ history }) => {
     return (
         <Box>
-            <ButtonAppBar history={history} />
+            <Header history={history} />
             {auth.currentUser
                 // User signed in
                 ? <Application />
