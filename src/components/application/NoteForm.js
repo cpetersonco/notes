@@ -10,7 +10,7 @@ import { createNoteItem } from '../../api/firebase'
 
 const EMPTY_DELTA = { ops: [] }
 
-const NoteForm = (props) => {
+const NoteForm = ({ onSubmit }) => {
     const [content, setContent] = useState(EMPTY_DELTA)
 
     const handleSubmit = (e) => {
@@ -27,6 +27,7 @@ const NoteForm = (props) => {
             .then(function (docRef) {
                 console.log('Document written with ID: ', docRef.id)
                 setContent(EMPTY_DELTA)
+                onSubmit()
             })
             .catch(function (error) {
                 console.error('Error adding document: ', error)
