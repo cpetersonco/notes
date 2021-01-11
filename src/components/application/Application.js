@@ -45,8 +45,8 @@ const Application = (props) => {
             <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
+                aria-labelledby="new-note"
+                aria-describedby="add-a-new-note"
             >
                 <Container maxWidth='sm' className={classes.modal}>
                     <Paper elevation={3}>
