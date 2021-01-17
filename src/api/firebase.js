@@ -33,6 +33,13 @@ export const createNoteItem = (content) => {
     })
 }
 
+export const updateNoteItem = (content, noteID) => {
+    return db.collection('notes').doc(noteID).update({
+        content,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+}
+
 export const getNoteItems = () => {
     return db.collection('notes')
         .where('uid', '==', auth.currentUser.uid)
