@@ -20,10 +20,7 @@ export const authenticateWithEmailAndPassword = (email, password) => {
             return auth.signInWithEmailAndPassword(email, password)
         })
         .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code
-            const errorMessage = error.message
-            console.log(`Error ${errorCode}: ${errorMessage}`)
+            console.log('Error authenticating user: ', error)
         })
     return auth.signInWithEmailAndPassword(email, password)
 }

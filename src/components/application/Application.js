@@ -30,13 +30,11 @@ const Application = (props) => {
         const contentAsString = JSON.stringify(content)
 
         createNoteItem(contentAsString)
-            .then(function (docRef) {
-                // console.log('Document written with ID: ', docRef.id)
-                setOpen(false)
-            })
             .catch(function (error) {
                 console.error('Error adding document: ', error)
             })
+
+        setOpen(false)
     }
 
     // update a note
@@ -44,19 +42,15 @@ const Application = (props) => {
         const contentAsString = JSON.stringify(content)
 
         updateNoteItem(contentAsString, noteId)
-            .then(
-                setOpen(false)
-            )
             .catch(function (error) {
                 console.error('Error adding document: ', error)
             })
+
+        setOpen(false)
     }
 
     const deleteNote = (noteId) => {
         deleteNoteItem(noteId)
-            .then(() => {
-                console.log('Document successfully deleted.')
-            })
             .catch((error) => {
                 console.error('Error deleting document: ', error)
             })
