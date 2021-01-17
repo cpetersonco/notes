@@ -7,7 +7,8 @@ import Button from '@material-ui/core/Button'
 
 import SignOutButton from './SignOutButton'
 
-import { auth } from '../../api/firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,7 +32,7 @@ const Header = ({ history }) => {
                         Notes
                 </Typography>
                 {
-                    auth.currentUser
+                    firebase.auth().currentUser
                         ? <SignOutButton history={history}/>
                         : <div>
                             <Button onClick={() => history.push('/signup')}>

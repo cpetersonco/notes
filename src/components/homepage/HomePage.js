@@ -6,12 +6,15 @@ import LandingPage from './LandingPage'
 import Header from './Header'
 import Application from '../application'
 
-import { auth } from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 const Home = ({ history }) => {
     const [isAuth, setIsAuth] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
-    auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function (user) {
+        setIsLoading(false)
         if (user) {
             setIsAuth(true)
         } else {
@@ -19,12 +22,16 @@ const Home = ({ history }) => {
         }
     })
 
-    return (
-        <Box>
-            <Header history={history} />
-            {isAuth ? <Application /> : <LandingPage history={history} />}
-        </Box>
-    )
+    if (!isLoading) {
+        return (
+            <Box>
+                <Header history={history} />
+                {isAuth ? <Application /> : <LandingPage history={history} />}
+            </Box>
+        )
+    } else {
+        return (<div> </div>)
+    }
 }
 
 export default Home
