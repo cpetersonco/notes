@@ -69,18 +69,18 @@ const Application = (props) => {
 
     const [content, setContent] = useState(EMPTY_DELTA)
 
-    const [openID, setOpenID] = useState('')
+    const [noteID, setNoteID] = useState('')
 
     const openNoteEditor = (initialContent, noteId, isEdit) => {
         setOpen(true)
         setContent(initialContent)
-        setOpenID(noteId)
+        setNoteID(noteId)
         setIsEdit(isEdit)
     }
 
     return (
         <div>
-            <NoteForm noteID={openID} content={content} setContent={setContent} open={open} setOpen={setOpen} onSubmit={isEdit ? updateNote : createNote}/>
+            <NoteForm noteID={noteID} content={content} setContent={setContent} open={open} setOpen={setOpen} onSubmit={isEdit ? updateNote : createNote}/>
             <Container maxWidth='sm'>
                 <Grid justify="space-between" container>
                     <Grid item>

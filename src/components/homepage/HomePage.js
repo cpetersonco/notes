@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Box from '@material-ui/core/Box'
 
@@ -6,18 +6,23 @@ import LandingPage from './LandingPage'
 import Header from './Header'
 import Application from '../application'
 
-import { auth } from '../../api/firebase'
+import { auth } from 'firebase'
 
 const Home = ({ history }) => {
+    const [isAuth, setIsAuth] = useState(false)
+
+    auth().onAuthStateChanged(function (user) {
+        if (user) {
+            setIsAuth(true)
+        } else {
+            setIsAuth(false)
+        }
+    })
+
     return (
         <Box>
             <Header history={history} />
-            {auth.currentUser
-                // User signed in
-                ? <Application />
-                // No user is signed in.
-                : <LandingPage history={history} />
-            }
+            {isAuth ? <Application /> : <LandingPage history={history} />}
         </Box>
     )
 }

@@ -14,6 +14,16 @@ export const auth = firebase.auth()
 export const db = firebase.firestore()
 
 export const authenticateWithEmailAndPassword = (email, password) => {
+    auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(() => {
+            return auth.signInWithEmailAndPassword(email, password)
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code
+            const errorMessage = error.message
+            console.log(`Error ${errorCode}: ${errorMessage}`)
+        })
     return auth.signInWithEmailAndPassword(email, password)
 }
 
