@@ -25,11 +25,6 @@ const NoteForm = ({ open, setOpen, content, setContent, onSubmit, noteID }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        // skip add if empty
-        if (content.ops.length === 0) {
-            return
-        }
-
         onSubmit(content, noteID)
     }
 
@@ -50,7 +45,6 @@ const NoteForm = ({ open, setOpen, content, setContent, onSubmit, noteID }) => {
                                 <Button onClick={handleSubmit}>Save</Button>
                             </Grid>
                         </Grid>
-
                     </Container>
                 </Paper>
             </Container>

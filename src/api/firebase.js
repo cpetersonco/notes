@@ -40,6 +40,10 @@ export const updateNoteItem = (content, noteID) => {
     })
 }
 
+export const deleteNoteItem = (noteID) => {
+    return db.collection('notes').doc(noteID).delete()
+}
+
 export const getNoteItems = () => {
     return db.collection('notes')
         .where('uid', '==', auth.currentUser.uid)

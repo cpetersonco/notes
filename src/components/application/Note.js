@@ -9,7 +9,7 @@ const modules = {
     toolbar: false
 }
 
-const Note = ({ content, openNoteEditor, noteId }) => {
+const Note = ({ content, openNoteEditor, noteId, onDelete }) => {
     return (
         <Paper elevation={3} square={true}>
             <ReactQuill modules={modules} theme="snow" value={content} readOnly={true}/>
@@ -18,7 +18,7 @@ const Note = ({ content, openNoteEditor, noteId }) => {
                     <Button onClick={() => openNoteEditor(content, noteId, true)}>Edit</Button>
                 </Grid>
                 <Grid item>
-                    <Button>Delete</Button>
+                    <Button onClick={() => onDelete(noteId)}>Delete</Button>
                 </Grid>
             </Grid>
         </Paper>

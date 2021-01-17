@@ -5,7 +5,7 @@ import { Grid, Button, Container, Typography } from '@material-ui/core'
 import NoteForm from './NoteForm'
 import Note from './Note'
 
-import { streamNoteItems, createNoteItem, updateNoteItem } from '../../api/firebase'
+import { streamNoteItems, createNoteItem, updateNoteItem, deleteNoteItem } from '../../api/firebase'
 
 const EMPTY_DELTA = { ops: [] }
 
@@ -52,6 +52,16 @@ const Application = (props) => {
             })
     }
 
+    const deleteNote = (noteId) => {
+        deleteNoteItem(noteId)
+            .then(() => {
+                console.log('Document successfully deleted.')
+            })
+            .catch((error) => {
+                console.error('Error deleting document: ', error)
+            })
+    }
+
     // Modal State
     const [isEdit, setIsEdit] = useState(false)
 
@@ -85,7 +95,7 @@ const Application = (props) => {
                         const contentAsJSON = JSON.parse(note.content)
                         return (
                             <Grid item xs={12} key={index}>
-                                <Note content={contentAsJSON} openNoteEditor={openNoteEditor} noteId={note.id} />
+                                <Note content={contentAsJSON} openNoteEditor={openNoteEditor} noteId={note.id} onDelete={deleteNote}/>
                             </Grid>
                         )
                     })}
